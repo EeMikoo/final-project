@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Bank" parallel="tests" >
+    <test name="Customers" >
+        <classes >
+            <class name="Tests.Testing" />
+        </classes>
+    </test>
+</suite>
