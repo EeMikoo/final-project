@@ -6,6 +6,8 @@ import TestCases.CustomerPage;
 import TestCases.AccountPage;
 import TestCases.SearchPage;
 import TestCases.DeletePage;
+import TestCases.TransactionPage;
+import TestCases.LogoutPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -35,6 +37,60 @@ public class Testing {
     }
 
     @Test(priority = 1)
+    public void CustomerPage() throws InterruptedException {
+        driver.get("https://www.globalsqa.com/angularJs-protractor/BankingProject");
+        Thread.sleep(2000);
+
+        CustomerPage customerPage = new CustomerPage(driver);
+
+        customerPage.ClickBankMngr();
+        Thread.sleep(1000);
+
+        customerPage.ClickAddCus();
+        Thread.sleep(1000);
+
+        customerPage.FillFirstName("Merey");
+        Thread.sleep(1000);
+
+        customerPage.FillLastName("Turganbekov");
+        Thread.sleep(1000);
+
+        customerPage.FillPostalCode("501581");
+        Thread.sleep(1000);
+
+        customerPage.ConfirmAddCus();
+        Thread.sleep(3000);
+
+        System.out.println("Testcase-1 accepted Successfully!!!");
+
+    }
+
+    @Test(priority = 2)
+    public void AccountPage() throws InterruptedException {
+
+        AccountPage accountPage = new AccountPage(driver);
+
+        accountPage.ClickAddAcc();
+        Thread.sleep(1000);
+
+        WebElement customerInput = driver.findElement(By.xpath("//*[@id=\"userSelect\"]/option[7]"));
+
+        accountPage.FillCustomer(customerInput.getText());
+        Thread.sleep(1000);
+
+        WebElement currencyInput = driver.findElement(By.xpath("//*[@id=\"currency\"]/option[2]"));
+
+        accountPage.FillCurrency(currencyInput.getText());
+        Thread.sleep(1000);
+
+        accountPage.ConfirmAccount();
+        Thread.sleep(3000);
+
+        System.out.println("Testcase-2 accepted Successfully!!!");
+
+    }
+
+    @Test(priority = 3)
     public void DepositPage() throws InterruptedException {
         driver.get("https://www.globalsqa.com/angularJs-protractor/BankingProject");
         Thread.sleep(2000);
@@ -66,13 +122,13 @@ public class Testing {
         Thread.sleep(1000);
 
         Assert.assertEquals( depositPage.getWelcomeText(), "Deposit Successful");
-        System.out.println("Testcase-1 accepted Successfully!!!");
+        System.out.println("Testcase-3 accepted Successfully!!!");
 
         depositPage.BackHomePage();
         Thread.sleep(2000);
     }
 
-    @Test(priority = 2)
+    @Test(priority = 4)
     public void WithdrawalPage() throws InterruptedException {
 
         WithdrawalPage withdrawalPage = new WithdrawalPage(driver);
@@ -102,69 +158,47 @@ public class Testing {
         Thread.sleep(2000);
 
         Assert.assertEquals( withdrawalPage.getWelcomeText(), "Transaction successful");
-        System.out.println("Testcase-2 accepted Successfully!!!");
-
-    }
-
-    @Test(priority = 3)
-    public void CustomerPage() throws InterruptedException {
-        driver.get("https://www.globalsqa.com/angularJs-protractor/BankingProject");
-        Thread.sleep(2000);
-
-        CustomerPage customerPage = new CustomerPage(driver);
-
-        customerPage.ClickBankMngr();
-        Thread.sleep(1000);
-
-        customerPage.ClickAddCus();
-        Thread.sleep(1000);
-
-        customerPage.FillFirstName("Merey");
-        Thread.sleep(1000);
-
-        customerPage.FillLastName("Turganbekov");
-        Thread.sleep(1000);
-
-        customerPage.FillPostalCode("501581");
-        Thread.sleep(1000);
-
-        customerPage.ConfirmAddCus();
-        Thread.sleep(3000);
-
-        System.out.println("Testcase-3 accepted Successfully!!!");
-
-    }
-
-
-    @Test(priority = 4)
-    public void AccountPage() throws InterruptedException {
-
-        AccountPage accountPage = new AccountPage(driver);
-
-        accountPage.ClickAddAcc();
-        Thread.sleep(1000);
-
-        WebElement customerInput = driver.findElement(By.xpath("//*[@id=\"userSelect\"]/option[7]"));
-
-        accountPage.FillCustomer(customerInput.getText());
-        Thread.sleep(1000);
-
-        WebElement currencyInput = driver.findElement(By.xpath("//*[@id=\"currency\"]/option[2]"));
-
-        accountPage.FillCurrency(currencyInput.getText());
-        Thread.sleep(1000);
-
-        accountPage.ConfirmAccount();
-        Thread.sleep(3000);
-
         System.out.println("Testcase-4 accepted Successfully!!!");
 
     }
 
-    @Test(priority = 4)
+    @Test(priority = 5)
+    public void TransactionPage() throws InterruptedException {
+
+        TransactionPage transactionPage = new TransactionPage(driver);
+
+        transactionPage.ClickTransactions();
+        Thread.sleep(3000);
+
+        transactionPage.ClickReset();
+        Thread.sleep(2000);
+
+        Assert.assertEquals( transactionPage.getWelcomeText(), "Transaction Type");
+        System.out.println("Testcases 8-9 accepted Successfully!!!");
+
+    }
+
+    @Test(priority = 6)
+    public void LogoutPage() throws InterruptedException {
+
+        LogoutPage logoutPage = new LogoutPage(driver);
+
+        logoutPage.ClickLogout();
+        Thread.sleep(3000);
+
+        System.out.println("Testcase 10 accepted Successfully!!!");
+
+    }
+
+    @Test(priority = 7)
     public void SearchPage() throws InterruptedException {
+        driver.get("https://www.globalsqa.com/angularJs-protractor/BankingProject");
+        Thread.sleep(2000);
 
         SearchPage searchPage = new SearchPage(driver);
+
+        searchPage.ClickBankMngr();
+        Thread.sleep(1000);
 
         searchPage.ClickCustomerBtn();
         Thread.sleep(1000);
@@ -176,11 +210,11 @@ public class Testing {
         Thread.sleep(2000);
 
         Assert.assertEquals( searchPage.getWelcomeText(), "Merey");
-        System.out.println("Testcase-5 accepted Successfully!!!");
+        System.out.println("Testcase-6 accepted Successfully!!!");
 
     }
 
-    @Test(priority = 5)
+    @Test(priority = 8)
     public void DeletePage() throws InterruptedException {
 
         DeletePage deletePage = new DeletePage(driver);
@@ -188,10 +222,9 @@ public class Testing {
         deletePage.ClickDeleteBtn();
         Thread.sleep(2000);
 
-        System.out.println("Testcase-6 accepted Successfully!!!");
+        System.out.println("Testcase-7 accepted Successfully!!!");
 
     }
-
 
     @AfterSuite()
     public void close(){

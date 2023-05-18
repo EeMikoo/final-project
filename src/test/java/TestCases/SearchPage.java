@@ -8,6 +8,9 @@ import org.openqa.selenium.support.PageFactory;
 public class SearchPage {
     WebDriver driver;
 
+    @FindBy(xpath = "/html/body/div/div/div[2]/div/div[1]/div[2]/button")
+    WebElement clickOnMngr;
+
     @FindBy(xpath = "/html/body/div/div/div[2]/div/div[1]/button[3]")
     WebElement clickOnCustomerBtn;
 
@@ -17,6 +20,9 @@ public class SearchPage {
     @FindBy(xpath = "/html/body/div/div/div[2]/div/div[2]/div/div/table/tbody/tr/td[1]")
     WebElement welcomeText;
 
+    public void ClickBankMngr(){
+        clickOnMngr.click();
+    }
 
     public void ClickCustomerBtn(){
         clickOnCustomerBtn.click();

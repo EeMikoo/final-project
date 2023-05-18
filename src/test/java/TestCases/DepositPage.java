@@ -14,7 +14,7 @@ public class DepositPage {
     @FindBy(id = "userSelect")
     WebElement clickOnUserSelect;
 
-    @FindBy(xpath = "//*[@id=\"userSelect\"]/option[2]")
+    @FindBy(xpath = "//*[@id=\"userSelect\"]/option[7]")
     WebElement clickOnValue1;
 
     @FindBy(xpath = "/html/body/div/div/div[2]/div/form/button")
