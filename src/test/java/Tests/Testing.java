@@ -61,6 +61,8 @@ public class Testing {
         customerPage.ConfirmAddCus();
         Thread.sleep(3000);
 
+        driver.switchTo().alert().accept();
+
         System.out.println("Testcase-1 accepted Successfully!!!");
 
     }
@@ -85,6 +87,7 @@ public class Testing {
 
         accountPage.ConfirmAccount();
         Thread.sleep(3000);
+        driver.switchTo().alert().accept();
 
         System.out.println("Testcase-2 accepted Successfully!!!");
 
